@@ -1,12 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhotoFlow</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhotoFlow Upload PoC</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    max-width:600px;
+    margin:40px auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.card{
+    border:1px solid #ddd;
+    padding:20px;
+    border-radius:10px;
+}
+
+button{
+    padding:10px 20px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+#preview{
+    max-width:100%;
+    margin-top:15px;
+    display:none;
+}
+
+#result{
+    margin-top:20px;
+    font-weight:bold;
+}
+</style>
+
 </head>
 <body>
-    <h1>📸 PhotoFlow funcionando</h1>
-    <p>Primera versión publicada.</p>
+
+<h1>📸 PhotoFlow PoC</h1>
+
+<div class="card">
+
+<input
+    type="file"
+    id="fileInput"
+    accept="image/*">
+
+<br>
+
+<img id="preview">
+
+<br>
+
+<button onclick="uploadImage()">
+Subir Imagen
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const WEBAPP_URL =
+'https://script.google.com/macros/s/AKfycbyK_Ki7Vmqmr-7Dzi0ui-8KbmKn5_yQz8zYq_A10qR4fNpHh8Gl-AvF5Cq8m7cMvMCc4Q/exec';
+
+const fileInput = document.getElementById('fileInput');
+const preview = document.getElementById('preview');
+
+fileInput.addEventListener('change', () => {
+
+    const file = fileInput.files[0];
+
+    if(!file) return;
+
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = 'block';
+
+});
+
+async function uploadImage(){
+
+    const file = fileInput.files[0];
+
+    if(!file){
+
+        alert('Selecciona una imagen');
+        return;
+    }
+
+    document.getElementById('result').innerHTML =
+    '⏳ Convirtiendo imagen...';
+
+    const reader = new FileReader();
+
+    reader.onload = async function(){
+
+        const base64 =
+        reader.result.split(',')[1];
+
+        const payload = {
+
+            fileName:file.name,
+            mimeType:file.type,
+            base64:base64
+
+        };
+
+        try{
+
+            document.getElementById('result').innerHTML =
+            '📤 Subiendo...';
+
+            const response = await fetch(
+                WEBAPP_URL,
+                {
+                    method:'POST',
+                    body:JSON.stringify(payload)
+                }
+            );
+
+            const data =
+            await response.json();
+
+            if(data.success){
+
+                document.getElementById('result').innerHTML =
+                '✅ Imagen subida correctamente';
+
+            }else{
+
+                document.getElementById('result').innerHTML =
+                '❌ ' + data.error;
+            }
+
+        }catch(error){
+
+            document.getElementById('result').innerHTML =
+            '❌ ' + error;
+        }
+
+    };
+
+    reader.readAsDataURL(file);
+}
+
+</script>
+
 </body>
 </html>
