@@ -87,21 +87,27 @@ function renderSections() {
   app.innerHTML = `
     <main class="app-shell">
 
-      <section class="content section-screen">
+      <section class="sections-hero">
 
-        <button class="back-button" onclick="goTo('home')">
-          ← Regresar
+        <button class="back-button light" onclick="goTo('home')">
+          ←
         </button>
 
-        <h1 class="screen-title">¿Dónde estás?</h1>
+        <div>
+          <span class="badge">Elige un momento</span>
+          <h1>¿Dónde estás?</h1>
+          <p>
+            Guarda tus recuerdos en la parte correcta de la celebración.
+          </p>
+        </div>
 
-        <p class="screen-subtitle">
-          Elige el momento del evento para guardar tus recuerdos en el lugar correcto.
-        </p>
+      </section>
 
-        <div class="section-list">
+      <section class="sections-content">
+
+        <div class="moment-grid">
           ${renderSectionCard("Preparativos", "✨")}
-          ${renderSectionCard("Misa de Agradecimiento", "⛪")}
+          ${renderSectionCard("Misa", "⛪")}
           ${renderSectionCard("Cocktail", "🍸")}
           ${renderSectionCard("Cena", "🍽️")}
           ${renderSectionCard("Vals", "👑")}
@@ -118,9 +124,9 @@ function renderSections() {
 
 function renderSectionCard(name, icon) {
   return `
-    <button class="section-card" onclick="selectSection('${name}')">
-      <span class="section-icon">${icon}</span>
-      <span>${name}</span>
+    <button class="moment-card" onclick="selectSection('${name}')">
+      <span class="moment-icon">${icon}</span>
+      <span class="moment-name">${name}</span>
     </button>
   `;
 }
