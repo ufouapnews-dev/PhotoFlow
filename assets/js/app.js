@@ -61,7 +61,7 @@ function renderHome() {
 }
 
 function handleUploadClick() {
-  alert("Siguiente paso: pantalla de Secciones.");
+  goTo("sections");
 }
 
 function handleGalleryClick() {
