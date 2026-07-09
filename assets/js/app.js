@@ -51,7 +51,7 @@ function renderHome() {
         </div>
 
         <div class="footer">
-          ${AppState.app.name} · powered by PhotoFlow Engine · v${AppState.app.version}
+          ${AppState.app.name} · Versión Fundación · v${AppState.app.version}
         </div>
 
       </section>
