@@ -135,7 +135,8 @@ async function uploadImage(){
     progressBar.style.display = 'block';
 
     let uploaded = 0;
-
+let lastFileName = "";
+let lastUploadTime = "";
     for(const file of selectedFiles){
 
         result.innerHTML = `
@@ -175,7 +176,10 @@ async function uploadImage(){
     uploaded++;
 
     const seconds =
-    (data.uploadTimeMs / 1000).toFixed(2);
+(data.uploadTimeMs / 1000).toFixed(2);
+
+lastFileName = data.fileName;
+lastUploadTime = seconds;
 
     console.log(
         `${data.fileName} → ${seconds}s`
@@ -200,10 +204,34 @@ async function uploadImage(){
     }
 
     result.innerHTML = `
-        ✅ ${uploaded}
-        archivo(s) cargado(s)
-        correctamente
-    `;
+<div style="
+    background:#e8f5e9;
+    border:1px solid #4CAF50;
+    border-radius:8px;
+    padding:15px;
+    margin-top:15px;
+">
+
+<h3 style="color:#2E7D32;">
+✅ Carga completada
+</h3>
+
+<p>
+<strong>Archivos cargados:</strong> ${uploaded}
+</p>
+
+<p>
+<strong>Último archivo:</strong><br>
+📸 ${lastFileName}
+</p>
+
+<p>
+<strong>Tiempo de procesamiento:</strong><br>
+⏱️ ${lastUploadTime} segundos
+</p>
+
+</div>
+`;
 
     button.disabled = false;
 
