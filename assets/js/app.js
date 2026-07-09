@@ -67,5 +67,62 @@ function handleUploadClick() {
 function handleGalleryClick() {
   alert("La galería se construirá en un próximo sprint.");
 }
+function renderApp() {
+  if (AppState.navigation.currentPage === "home") {
+    renderHome();
+    return;
+  }
 
-renderHome();
+  if (AppState.navigation.currentPage === "sections") {
+    renderSections();
+    return;
+  }
+}
+
+function renderSections() {
+  app.innerHTML = `
+    <main class="app-shell">
+
+      <section class="content section-screen">
+
+        <button class="back-button" onclick="goTo('home')">
+          ← Regresar
+        </button>
+
+        <h1 class="screen-title">¿Dónde estás?</h1>
+
+        <p class="screen-subtitle">
+          Elige el momento del evento para guardar tus recuerdos en el lugar correcto.
+        </p>
+
+        <div class="section-list">
+          ${renderSectionCard("Preparativos", "✨")}
+          ${renderSectionCard("Misa de Agradecimiento", "⛪")}
+          ${renderSectionCard("Cocktail", "🍸")}
+          ${renderSectionCard("Cena", "🍽️")}
+          ${renderSectionCard("Vals", "👑")}
+          ${renderSectionCard("Fiesta", "🎉")}
+          ${renderSectionCard("After Party", "🌙")}
+          ${renderSectionCard("General", "📸")}
+        </div>
+
+      </section>
+
+    </main>
+  `;
+}
+
+function renderSectionCard(name, icon) {
+  return `
+    <button class="section-card" onclick="selectSection('${name}')">
+      <span class="section-icon">${icon}</span>
+      <span>${name}</span>
+    </button>
+  `;
+}
+
+function selectSection(sectionName) {
+  AppState.upload.section = sectionName;
+  alert("Sección seleccionada: " + sectionName);
+}
+renderApp();
