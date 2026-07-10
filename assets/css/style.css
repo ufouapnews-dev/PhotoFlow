@@ -272,3 +272,33 @@ body {
     box-shadow: none;
   }
 }
+.btn,
+.icon-back,
+.section-tile {
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.btn:hover,
+.section-tile:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active,
+.icon-back:active,
+.section-tile:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--color-on-primary);
+}
+
+.btn-secondary {
+  background: var(--color-surface-soft);
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-border);
+}
