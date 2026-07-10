@@ -68,16 +68,9 @@ function renderHome() {
 }
 
 function renderSections() {
-  const sections = [
-    ["Preparativos", "✨"],
-    ["Misa de Agradecimiento", "⛪"],
-    ["Cocktail de Bienvenida", "🍸"],
-    ["Cena", "🍽️"],
-    ["Vals", "👑"],
-    ["Fiesta", "🎉"],
-    ["After Party", "🌙"],
-    ["Carpeta General", "📁"]
-  ];
+  ${AppState.event.sections.map(section =>
+  UI.sectionCard({ section })
+).join("")}
 
   app.innerHTML = `
     <main class="app-shell white-shell">
@@ -99,9 +92,12 @@ function renderSections() {
   `;
 }
 
-function selectSection(sectionName) {
-  AppState.upload.section = sectionName;
-  alert("Seleccionaste: " + sectionName);
+function selectSection(sectionId) {
+  const selectedSection = AppState.event.sections.find(
+    section => section.id === sectionId
+  );
+
+  AppState.upload.section = selectedSection;
 }
 
 renderApp();
