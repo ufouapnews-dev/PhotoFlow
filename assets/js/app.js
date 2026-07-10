@@ -1,9 +1,15 @@
 const app = document.getElementById("app");
 
+function renderApp() {
+  const page = AppState.navigation.currentPage;
+
+  if (page === "home") renderHome();
+  if (page === "sections") renderSections();
+}
+
 function renderHome() {
   app.innerHTML = `
     <main class="app-shell">
-
       <section class="hero">
         <div class="top-bar">
           <span class="badge">Evento privado</span>
@@ -17,7 +23,6 @@ function renderHome() {
       </section>
 
       <section class="content">
-
         <div class="event-card">
           <h2>${AppState.event.name}</h2>
           <div class="date">${AppState.event.date}</div>
@@ -28,11 +33,11 @@ function renderHome() {
           </p>
 
           <div class="actions">
-            <button class="btn btn-primary" onclick="handleUploadClick()">
+            <button class="btn btn-primary" onclick="goTo('sections')">
               Subir fotos o videos
             </button>
 
-            <button class="btn btn-secondary" onclick="handleGalleryClick()">
+            <button class="btn btn-secondary">
               Ver galería
             </button>
           </div>
@@ -53,159 +58,46 @@ function renderHome() {
         <div class="footer">
           ${AppState.app.name} · Versión Fundación · v${AppState.app.version}
         </div>
-
       </section>
-
     </main>
   `;
-}
-
-function handleUploadClick() {
-  goTo("sections");
-}
-
-function handleGalleryClick() {
-  alert("La galería se construirá en un próximo sprint.");
-}
-function renderApp() {
-  if (AppState.navigation.currentPage === "home") {
-    renderHome();
-    return;
-  }
-
-  if (AppState.navigation.currentPage === "sections") {
-    renderSections();
-    return;
-  }
-  if (AppState.navigation.currentPage === "upload") {
-  renderUpload();
-  return;
-}
 }
 
 function renderSections() {
+  const sections = [
+    ["Preparativos", "✨"],
+    ["Misa de Agradecimiento", "⛪"],
+    ["Cocktail de Bienvenida", "🍸"],
+    ["Cena", "🍽️"],
+    ["Vals", "👑"],
+    ["Fiesta", "🎉"],
+    ["After Party", "🌙"],
+    ["Carpeta General", "📁"]
+  ];
+
   app.innerHTML = `
-    <main class="app-shell">
-
-      <section class="sections-hero">
-
-        <button class="back-button light" onclick="goTo('home')">
-          ←
-        </button>
-
-        <div>
-          <span class="badge">Elige un momento</span>
-          <h1>¿Dónde estás?</h1>
-          <p>
-            Guarda tus recuerdos en la parte correcta de la celebración.
-          </p>
-        </div>
-
+    <main class="app-shell white-shell">
+      <section class="sections-header">
+        <button class="icon-back" onclick="goTo('home')">←</button>
+        <h1>Secciones</h1>
       </section>
 
-      <section class="sections-content">
-
-        <div class="moment-grid">
-          ${renderSectionCard("Preparativos", "✨")}
-          ${renderSectionCard("Misa", "⛪")}
-          ${renderSectionCard("Cocktail", "🍸")}
-          ${renderSectionCard("Cena", "🍽️")}
-          ${renderSectionCard("Vals", "👑")}
-          ${renderSectionCard("Fiesta", "🎉")}
-          ${renderSectionCard("After Party", "🌙")}
-          ${renderSectionCard("General", "📸")}
-        </div>
-
+      <section class="sections-grid">
+        ${sections.map(([name, icon], index) => `
+          <button class="section-tile tile-${index + 1}" onclick="selectSection('${name}')">
+            <span class="tile-overlay"></span>
+            <span class="tile-icon">${icon}</span>
+            <span class="tile-name">${name}</span>
+          </button>
+        `).join("")}
       </section>
-
     </main>
-  `;
-}
-
-function renderSectionCard(name, icon) {
-  return `
-    <button class="moment-card" onclick="selectSection('${name}')">
-      <span class="moment-icon">${icon}</span>
-      <span class="moment-name">${name}</span>
-    </button>
   `;
 }
 
 function selectSection(sectionName) {
   AppState.upload.section = sectionName;
-  goTo("upload");
+  alert("Seleccionaste: " + sectionName);
 }
+
 renderApp();
-function renderUpload() {
-  app.innerHTML = `
-    <main class="app-shell">
-
-      <section class="content section-screen">
-
-        <button class="back-button" onclick="goTo('sections')">
-          ← Regresar
-        </button>
-
-        <h1 class="screen-title">Subir recuerdos</h1>
-
-        <p class="screen-subtitle">
-          Sección seleccionada:
-          <strong>${AppState.upload.section}</strong>
-        </p>
-
-        <div class="upload-box">
-          <div class="upload-icon">📸</div>
-
-          <h2>Selecciona fotos o videos</h2>
-
-          <p>
-            Elige los archivos que quieras compartir en esta parte del evento.
-          </p>
-
-          <input
-            type="file"
-            id="fileInput"
-            accept="image/*,video/*"
-            multiple
-            onchange="handleFileSelection(event)"
-          />
-        </div>
-
-        <div id="selectedFiles" class="selected-files"></div>
-
-      </section>
-
-    </main>
-  `;
-}
-function handleFileSelection(event) {
-  AppState.upload.files = Array.from(event.target.files);
-
-  const selectedFiles = document.getElementById("selectedFiles");
-
-  if (AppState.upload.files.length === 0) {
-    selectedFiles.innerHTML = "";
-    return;
-  }
-
-  selectedFiles.innerHTML = `
-    <div class="selected-summary">
-      <strong>${AppState.upload.files.length}</strong>
-      archivo(s) seleccionado(s)
-    </div>
-
-    ${AppState.upload.files.map(file => `
-      <div class="file-row">
-        <span>📎</span>
-        <div>
-          <strong>${file.name}</strong>
-          <small>${(file.size / 1024 / 1024).toFixed(2)} MB</small>
-        </div>
-      </div>
-    `).join("")}
-
-    <button class="btn btn-primary upload-action">
-      Continuar
-    </button>
-  `;
-}
