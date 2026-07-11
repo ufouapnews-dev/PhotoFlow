@@ -152,4 +152,28 @@ const UI = {
       </nav>
     `;
   },
+    stepper({ current = 1 } = {}) {
+    const steps = [
+      { number: 1, label: "Seleccionar" },
+      { number: 2, label: "Revisar" },
+      { number: 3, label: "Subiendo" },
+      { number: 4, label: "Listo" }
+    ];
+
+    return `
+      <div class="upload-stepper">
+        ${steps.map(step => {
+          const isActive = step.number === current;
+          const isCompleted = step.number < current;
+
+          return `
+            <div class="upload-step ${isActive ? "active" : ""} ${isCompleted ? "completed" : ""}">
+              <div class="upload-step-number">${step.number}</div>
+              <span>${step.label}</span>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    `;
+  },
 };
