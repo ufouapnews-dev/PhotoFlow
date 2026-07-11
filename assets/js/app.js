@@ -2,7 +2,6 @@ const app = document.getElementById("app");
 
 function renderApp() {
   const page = AppState.navigation.currentPage;
-
   if (page === "home") renderHome();
   if (page === "sections") renderSections();
 }
