@@ -97,7 +97,9 @@ function renderUpload() {
         title: "Subir archivos",
         back: "sections"
       })}
-
+${UI.stepper({
+  current: 1
+})}
       <section class="upload-page">
         <div class="upload-placeholder">
           <div class="upload-placeholder-icon">＋</div>
