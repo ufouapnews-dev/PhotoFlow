@@ -102,10 +102,6 @@ ${UI.stepper({
 })}
       <section class="upload-page">
         <div class="upload-placeholder">
-          <div class="upload-placeholder-icon">＋</div>
-
-          <h2>Selecciona fotos o videos</h2>
-
           <p>
             ${selectedSection
               ? `Sección seleccionada: ${selectedSection.name}`
