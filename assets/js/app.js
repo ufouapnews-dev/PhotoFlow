@@ -71,10 +71,10 @@ function renderSections() {
 
   app.innerHTML = `
     <main class="app-shell white-shell">
-      <section class="sections-header">
-        ${UI.backButton("home")}
-        <h1>Secciones</h1>
-      </section>
+      ${UI.header({
+  title: "Secciones",
+  back: "home"
+})}
 
       <section class="sections-grid">
         ${AppState.event.sections.map(section =>
