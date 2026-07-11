@@ -152,28 +152,4 @@ const UI = {
       </nav>
     `;
   },
-
-    return `
-      <nav class="bottom-nav">
-        ${items.map(item => {
-          const isUpload = item.id === "upload";
-          const isActive = item.id === active;
-
-          return `
-            <button
-              class="bottom-nav-item
-                ${isActive ? "active" : ""}
-                ${isUpload ? "bottom-nav-upload" : ""}"
-              onclick="goTo('${item.id}')"
-            >
-              <span class="bottom-nav-icon">${item.icon}</span>
-              ${item.label
-                ? `<span class="bottom-nav-label">${item.label}</span>`
-                : ""}
-            </button>
-          `;
-        }).join("")}
-      </nav>
-    `;
-  },
 };
