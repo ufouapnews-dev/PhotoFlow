@@ -473,7 +473,7 @@ background-position: center;
 }
 
 .upload-thumb {
-  aspect-ratio: 1;
+  height: 76px;
   border-radius: 12px;
   background: #ececec;
 }
