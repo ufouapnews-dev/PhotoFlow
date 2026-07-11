@@ -78,14 +78,80 @@ const UI = {
       </section>
     `;
   },
-    bottomNav({ active = "home" } = {}) {
+      bottomNav({ active = "home" } = {}) {
+    const icons = {
+      home: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 11.5 12 4l9 7.5"/>
+          <path d="M5.5 10.5V20h13v-9.5"/>
+        </svg>
+      `,
+      sections: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="4" width="6" height="6" rx="1"/>
+          <rect x="14" y="4" width="6" height="6" rx="1"/>
+          <rect x="4" y="14" width="6" height="6" rx="1"/>
+          <rect x="14" y="14" width="6" height="6" rx="1"/>
+        </svg>
+      `,
+      upload: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 5v14"/>
+          <path d="M5 12h14"/>
+        </svg>
+      `,
+      uploads: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 7h10"/>
+          <path d="M7 12h10"/>
+          <path d="M7 17h6"/>
+          <rect x="4" y="3" width="16" height="18" rx="2"/>
+        </svg>
+      `,
+      info: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 11v6"/>
+          <path d="M12 7h.01"/>
+        </svg>
+      `
+    };
+
     const items = [
-      { id: "home", label: "Inicio", icon: "⌂" },
-      { id: "sections", label: "Secciones", icon: "▣" },
-      { id: "upload", label: "", icon: "+" },
-      { id: "uploads", label: "Mis Subidas", icon: "♙" },
-      { id: "info", label: "Info", icon: "ⓘ" }
+      { id: "home", label: "Inicio" },
+      { id: "sections", label: "Secciones" },
+      { id: "upload", label: "" },
+      { id: "uploads", label: "Mis Subidas" },
+      { id: "info", label: "Info" }
     ];
+
+    return `
+      <nav class="bottom-nav">
+        ${items.map(item => {
+          const isUpload = item.id === "upload";
+          const isActive = item.id === active;
+
+          return `
+            <button
+              class="bottom-nav-item
+                ${isActive ? "active" : ""}
+                ${isUpload ? "bottom-nav-upload" : ""}"
+              onclick="goTo('${item.id}')"
+              aria-label="${item.label || "Subir archivos"}"
+            >
+              <span class="bottom-nav-icon">
+                ${icons[item.id]}
+              </span>
+
+              ${item.label
+                ? `<span class="bottom-nav-label">${item.label}</span>`
+                : ""}
+            </button>
+          `;
+        }).join("")}
+      </nav>
+    `;
+  },
 
     return `
       <nav class="bottom-nav">
