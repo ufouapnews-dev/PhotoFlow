@@ -146,6 +146,7 @@ function selectSection(sectionId) {
 function handleFilesSelected(event) {
   const files = Array.from(event.target.files);
 
-  console.log(files);
+  AppState.upload.files = files;
+console.log(AppState.upload.files);
 }
 renderApp();
