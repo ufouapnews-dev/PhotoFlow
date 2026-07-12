@@ -117,11 +117,14 @@ ${previews.slice(0, 7).map(() =>
               ? `Sección seleccionada: ${selectedSection.name}`
               : "Primero selecciona una sección"}
           </p>
-
+                    ${UI.filePicker({
+            id: "uploadFilePicker",
+            onChange: "handleFilesSelected(event)"
+          })}
           ${UI.button({
             text: "Seleccionar archivos",
             variant: "primary",
-            onClick: ""
+            onClick: "document.getElementById('uploadFilePicker').click()"
           })}
         </div>
       </section>
@@ -140,5 +143,9 @@ function selectSection(sectionId) {
   AppState.upload.section = selectedSection;
   goTo("upload");
 }
+function handleFilesSelected(event) {
+  const files = Array.from(event.target.files);
 
+  console.log(files);
+}
 renderApp();
