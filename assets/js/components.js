@@ -197,4 +197,21 @@ const UI = {
       </div>
     `;
   },
+    filePicker({
+    id = "filePicker",
+    multiple = true,
+    accept = "image/*,video/*",
+    onChange = ""
+  } = {}) {
+    return `
+      <input
+        id="${id}"
+        type="file"
+        ${multiple ? "multiple" : ""}
+        accept="${accept}"
+        style="display:none"
+        onchange="${onChange}"
+      >
+    `;
+  },
 };
