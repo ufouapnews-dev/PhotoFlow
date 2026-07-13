@@ -182,5 +182,4 @@ function handleUploadAction() {
 
   alert("Aquí iniciaremos la subida a Google Drive.");
 }
-}
 renderApp();
