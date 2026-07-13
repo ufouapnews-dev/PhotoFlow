@@ -94,12 +94,20 @@ const UI = {
           <rect x="14" y="14" width="6" height="6" rx="1"/>
         </svg>
       `,
-      upload: `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 5v14"/>
-          <path d="M5 12h14"/>
-        </svg>
-      `,
+upload: `
+  ${AppState.upload.files.length === 0 ? `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 5v14"/>
+      <path d="M5 12h14"/>
+    </svg>
+  ` : `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 16V5"/>
+      <path d="M8 9l4-4 4 4"/>
+      <path d="M5 19h14"/>
+    </svg>
+  `}
+`,
       uploads: `
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M7 7h10"/>
