@@ -76,7 +76,11 @@ sections: [
         currentPage: "home"
 
     },
+    device: {
 
+        token: null
+
+    },
     upload: {
 
     section: null,
