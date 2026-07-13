@@ -153,12 +153,11 @@ const UI = {
     `;
   },
     stepper({ current = 1 } = {}) {
-    const steps = [
-      { number: 1, label: "Seleccionar" },
-      { number: 2, label: "Revisar" },
-      { number: 3, label: "Subiendo" },
-      { number: 4, label: "Listo" }
-    ];
+   const steps = [
+  { number: 1, label: "Seleccionar" },
+  { number: 2, label: "Subiendo" },
+  { number: 3, label: "Listo" }
+];
 
     return `
       <div class="upload-stepper">
