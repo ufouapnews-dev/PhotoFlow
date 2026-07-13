@@ -92,7 +92,7 @@ function renderUpload() {
   const selectedSection = AppState.upload.section;
   const previews = AppState.upload.files;
 
-  if (AppState.upload.status === "uploading") {
+    if (AppState.upload.status === "uploading") {
     app.innerHTML = `
       <main class="app-shell white-shell">
         ${UI.header({
@@ -106,14 +106,22 @@ function renderUpload() {
 
         <section class="upload-page">
           <div class="upload-placeholder">
-            <h2>Subiendo archivos...</h2>
 
-            <p>
-              ${AppState.upload.current}
-              de
-              ${AppState.upload.total}
-              archivos enviados
-            </p>
+            <div class="upload-progress-panel">
+              <div class="upload-progress-bar"></div>
+
+              <div class="upload-progress-text">
+                ⏳ Subiendo<br><br>
+
+                <strong>${AppState.upload.currentFileName}</strong><br><br>
+
+                ${AppState.upload.current + 1}
+                de
+                ${AppState.upload.total}
+                archivos
+              </div>
+            </div>
+
           </div>
         </section>
 
