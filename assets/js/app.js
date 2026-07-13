@@ -219,9 +219,7 @@ if (AppState.upload.status === "uploading") {
 
     </main>
   `;
-
-  return;
-}
+  
 async function handleUploadAction() {
   if (AppState.upload.files.length === 0) {
     document.getElementById("uploadFilePicker").click();
