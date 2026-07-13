@@ -154,10 +154,12 @@ function selectSection(sectionId) {
 function handleFilesSelected(event) {
   const files = Array.from(event.target.files);
 
-  AppState.upload.files = [
+const mergedFiles = [
   ...AppState.upload.files,
   ...files
 ];
+
+AppState.upload.files = mergedFiles.slice(0, 12);
   console.log(AppState.upload.files);
   renderApp();
 }
