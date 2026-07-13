@@ -109,9 +109,13 @@ ${previews.slice(0, 7).map(file =>
   })
 ).join("")}
 
- <div class="upload-thumb upload-thumb-add">
-    +
-  </div>
+ <button
+  class="upload-thumb upload-thumb-add"
+  onclick="document.getElementById('uploadFilePicker').click()"
+  aria-label="Agregar más archivos"
+>
+  +
+</button>
 
 </div>
           <p>
