@@ -70,10 +70,12 @@ body {
 }
 
 .home-brand-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 95px;
+    margin-left: 38px;
+    margin-bottom: 36px;
 }
 .home-logo {
   width: 240px;
