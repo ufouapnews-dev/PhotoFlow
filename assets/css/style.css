@@ -202,7 +202,29 @@ body {
   font-size: 22px;
   cursor: pointer;
 }
+.page-header {
+  min-height: 96px;
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  padding: 24px 24px 8px;
+}
 
+.page-header h1 {
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--color-text);
+  font-weight: 900;
+}
+
+.page-header .icon-back {
+  justify-self: start;
+}
+
+.header-right {
+  width: 48px;
+}
 .sections-grid {
   padding: 0 16px 24px;
   display: grid;
