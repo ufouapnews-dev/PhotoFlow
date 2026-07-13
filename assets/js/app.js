@@ -19,10 +19,16 @@ function renderHome() {
 
           <div class="home-title">
 
-  <div class="home-brand-block">
+ <div class="home-brand-block">
 
   <img
-    src="assets/images/logo-recuerdos.png"
+    src="assets/images/logo-camera.png"
+    alt=""
+    class="home-brand-icon"
+  >
+
+  <img
+    src="assets/images/logo-recuerdos-word.png"
     alt="Recuerdos"
     class="home-logo"
   >
