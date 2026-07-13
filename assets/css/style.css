@@ -30,96 +30,88 @@ body {
   background: #ffffff;
 }
 
-.hero {
-  height: 360px;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.58)),
-    url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80");
+/* Pantalla principal */
+
+.home-shell {
+  min-height: 780px;
   background-size: cover;
   background-position: center;
-  color: white;
-  padding: 28px;
+  color: #ffffff;
+}
+
+.home-overlay {
+  min-height: 780px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 4, 16, 0.08) 0%,
+      rgba(10, 4, 16, 0.18) 32%,
+      rgba(10, 4, 16, 0.82) 100%
+    );
 }
 
-.top-bar {
+.home-content {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px 28px 28px;
 }
 
-.badge {
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.35);
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 700;
+.home-title {
+  margin-bottom: 28px;
 }
 
-.brand-mini {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.hero-title h1 {
-  font-size: 48px;
+.home-brand {
+  margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-style: italic;
   line-height: 1;
-  letter-spacing: -1.5px;
+  color: #ffffff;
+}
+
+.home-title h1 {
+  font-size: 44px;
+  line-height: 1.02;
+  letter-spacing: -1.2px;
   font-weight: 900;
+  color: #ffffff;
 }
 
-.hero-title p {
-  margin-top: 12px;
-  font-size: 16px;
-  line-height: 1.35;
-  opacity: 0.95;
-  max-width: 310px;
+.home-title-line {
+  width: 46px;
+  height: 4px;
+  margin: 20px 0;
+  border-radius: 999px;
+  background: var(--color-primary);
 }
 
-.content {
-  padding: 28px;
-  position: relative;
-  z-index: 2;
+.home-title p {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-.event-card {
-  background: #fff7fb;
-  border: 1px solid #f0d7e5;
-  border-radius: 24px;
-  padding: 22px;
-  margin-top: -42px;
-  position: relative;
-  box-shadow: 0 16px 35px rgba(133, 53, 96, 0.18);
-}
-
-.event-card h2 {
-  font-size: 26px;
-  margin-bottom: 6px;
-  color: #44283c;
-}
-
-.date {
-  font-size: 14px;
-  color: #875c78;
-  margin-bottom: 18px;
-}
-
-.event-card p {
-  font-size: 15px;
-  line-height: 1.45;
-  color: #5d4857;
-}
-
-.actions {
-  margin-top: 26px;
+.home-actions {
   display: grid;
   gap: 14px;
 }
 
+.home-actions .btn {
+  min-height: 58px;
+}
+
+.home-actions .btn-secondary {
+  background: rgba(25, 12, 31, 0.3);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+}
 .btn {
   width: 100%;
   border: none;
