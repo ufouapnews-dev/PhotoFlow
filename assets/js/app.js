@@ -103,7 +103,7 @@ ${UI.stepper({
       <section class="upload-page">
         <div class="upload-placeholder">
         <div class="upload-grid">
-${previews.slice(0, 7).map((file, index) =>
+${previews.map((file, index) =>
   UI.galleryThumb({
     image: URL.createObjectURL(file),
     removable: true,
