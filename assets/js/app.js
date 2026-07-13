@@ -91,54 +91,94 @@ function renderSections() {
 function renderUpload() {
   const selectedSection = AppState.upload.section;
   const previews = AppState.upload.files;
+
+  if (AppState.upload.status === "uploading") {
+    app.innerHTML = `
+      <main class="app-shell white-shell">
+        ${UI.header({
+          title: "Subiendo archivos",
+          back: false
+        })}
+
+        ${UI.stepper({
+          current: 2
+        })}
+
+        <section class="upload-page">
+          <div class="upload-placeholder">
+            <h2>Subiendo archivos...</h2>
+
+            <p>
+              ${AppState.upload.current}
+              de
+              ${AppState.upload.total}
+              archivos enviados
+            </p>
+          </div>
+        </section>
+
+        ${UI.bottomNav({
+          active: "upload"
+        })}
+      </main>
+    `;
+
+    return;
+  }
+
   app.innerHTML = `
     <main class="app-shell white-shell">
       ${UI.header({
         title: "Subir archivos",
         back: "sections"
       })}
-${UI.stepper({
-  current: 1
-})}
+
+      ${UI.stepper({
+        current: 1
+      })}
+
       <section class="upload-page">
         <div class="upload-placeholder">
-        <div class="upload-grid">
-${previews.map((file, index) =>
-  UI.galleryThumb({
-    image: URL.createObjectURL(file),
-    removable: true,
-    onRemove: `removeSelectedFile(${index})`
-  })
-).join("")}
+          <div class="upload-grid">
+            ${previews.map((file, index) =>
+              UI.galleryThumb({
+                image: URL.createObjectURL(file),
+                removable: true,
+                onRemove: `removeSelectedFile(${index})`
+              })
+            ).join("")}
 
-${previews.length < 12 ? `
-  <button
-    class="upload-thumb upload-thumb-add"
-    onclick="document.getElementById('uploadFilePicker').click()"
-    aria-label="Agregar más archivos"
-  >
-    +
-  </button>
-` : ""}
+            ${previews.length < 12 ? `
+              <button
+                class="upload-thumb upload-thumb-add"
+                onclick="document.getElementById('uploadFilePicker').click()"
+                aria-label="Agregar más archivos"
+              >
+                +
+              </button>
+            ` : ""}
+          </div>
 
-</div>
-<p class="upload-counter">
-  ${previews.length} de 12 archivos seleccionados
-</p>
+          <p class="upload-counter">
+            ${previews.length} de 12 archivos seleccionados
+          </p>
+
           <p>
             ${selectedSection
               ? `Sección seleccionada: ${selectedSection.name}`
               : "Primero selecciona una sección"}
           </p>
-                    ${UI.filePicker({
+
+          ${UI.filePicker({
             id: "uploadFilePicker",
             onChange: "handleFilesSelected(event)"
           })}
-      ${previews.length === 0 ? UI.button({
-  text: "Seleccionar archivos",
-  variant: "primary",
-  onClick: "document.getElementById('uploadFilePicker').click()"
-}) : ""}
+
+          ${previews.length === 0 ? UI.button({
+            text: "Seleccionar archivos",
+            variant: "primary",
+            onClick: "document.getElementById('uploadFilePicker').click()"
+          }) : ""}
         </div>
       </section>
 
