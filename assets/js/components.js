@@ -151,9 +151,19 @@ upload: `
                 ${icons[item.id]}
               </span>
 
-              ${item.label
-                ? `<span class="bottom-nav-label">${item.label}</span>`
-                : ""}
+              ${isUpload
+  ? (
+      AppState.upload.files.length > 0 &&
+      AppState.upload.status === "idle"
+        ? `<span class="bottom-nav-label">Subir</span>`
+        : ""
+    )
+  : (
+      item.label
+        ? `<span class="bottom-nav-label">${item.label}</span>`
+        : ""
+    )
+}
             </button>
           `;
         }).join("")}
