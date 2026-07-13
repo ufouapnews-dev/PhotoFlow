@@ -179,7 +179,8 @@ const UI = {
     galleryThumb({
     image = "",
     removable = false,
-    duration = ""
+    duration = "",
+    onRemove = ""  
   } = {}) {
     return `
       <div class="gallery-thumb">
@@ -188,7 +189,11 @@ const UI = {
           : `<div class="gallery-thumb-placeholder"></div>`}
 
         ${removable
-          ? `<button class="gallery-thumb-remove" aria-label="Eliminar archivo">×</button>`
+         ? `<button
+      class="gallery-thumb-remove"
+      aria-label="Eliminar archivo"
+      onclick="${onRemove}"
+    >×</button>`
           : ""}
 
         ${duration
