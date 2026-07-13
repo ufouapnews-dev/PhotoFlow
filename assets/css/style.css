@@ -70,25 +70,12 @@ body {
 }
 
 .home-brand-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 22px;
+  margin-bottom: 26px;
 }
-
-.home-brand-icon {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-}
-
-.home-brand {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 38px;
-  font-style: italic;
-  line-height: 1;
-  color: #ffffff;
+.home-logo {
+  width: 250px;
+  height: auto;
+  display: block;
 }
 
 .home-title h1 {
