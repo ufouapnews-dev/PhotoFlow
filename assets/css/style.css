@@ -35,7 +35,7 @@ body {
 .home-shell {
   min-height: 780px;
   background-size: cover;
-  background-position: 62% center;
+  background-position: 65% 20%;
   background-repeat: no-repeat;
   background-color: #120b14;
   color: #ffffff;
@@ -46,13 +46,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background:
+ background:
   linear-gradient(
     180deg,
-    rgba(8, 3, 12, 0.05) 0%,
-    rgba(8, 3, 12, 0.10) 35%,
-    rgba(8, 3, 12, 0.45) 60%,
-    rgba(8, 3, 12, 0.82) 100%
+    rgba(8, 3, 12, 0.00) 0%,
+    rgba(8, 3, 12, 0.00) 38%,
+    rgba(8, 3, 12, 0.22) 52%,
+    rgba(8, 3, 12, 0.62) 72%,
+    rgba(8, 3, 12, 0.90) 100%
   );
 }
 
