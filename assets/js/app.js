@@ -9,59 +9,50 @@ function renderApp() {
 
 function renderHome() {
   app.innerHTML = `
-    <main class="app-shell">
-      <section class="hero">
-        <div class="top-bar">
-          <span class="badge">Evento privado</span>
-          <span class="brand-mini">📸 ${AppState.app.name}</span>
-        </div>
+    <main
+      class="app-shell home-shell"
+      style="background-image: url('${AppState.event.heroImage}')"
+    >
+      <section class="home-overlay">
 
-        <div class="hero-title">
-          <h1>${AppState.app.name}</h1>
-          <p>${AppState.event.slogan}</p>
-        </div>
-      </section>
+        <div class="home-content">
 
-      <section class="content">
-        <div class="event-card">
-          <h2>${AppState.event.name}</h2>
-          <div class="date">${AppState.event.date}</div>
+          <div class="home-title">
+            <div class="home-brand">${AppState.app.name}</div>
 
-          <p>
-            Gracias por acompañarnos. Comparte aquí las fotos y videos
-            que captures durante esta celebración.
-          </p>
+            <h1>
+              XV Años<br>
+              Sofía Gutiérrez
+            </h1>
 
-          <div class="actions">
-            ${UI.button({
-    text: "Subir fotos o videos",
-    variant: "primary",
-    onClick: "goTo('sections')"
-  })}
+            <div class="home-title-line"></div>
 
-  ${UI.button({
-    text: "Ver galería",
-    variant: "secondary",
-    onClick: "handleGalleryClick()"
-  })}
+            <p>
+              Comparte tus momentos<br>
+              de este día inolvidable 💗
+            </p>
           </div>
+
+          <div class="home-actions">
+            ${UI.button({
+              text: "Subir fotos o videos",
+              variant: "primary",
+              onClick: "goTo('sections')"
+            })}
+
+            ${UI.button({
+              text: "Ver recuerdos",
+              variant: "secondary",
+              onClick: "handleGalleryClick()"
+            })}
+          </div>
+
         </div>
 
-        <div class="status">
-  ${UI.statusBox({
-    value: "0",
-    label: "Recuerdos"
-  })}
+        ${UI.bottomNav({
+          active: "home"
+        })}
 
-  ${UI.statusBox({
-    value: "6",
-    label: "Momentos"
-  })}
-</div>
-
-        <div class="footer">
-          ${AppState.app.name} · Versión Fundación · v${AppState.app.version}
-        </div>
       </section>
     </main>
   `;
