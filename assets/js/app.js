@@ -207,16 +207,18 @@ function renderUpload() {
 ${AppState.upload.status === "uploading" ? `
   <div class="upload-progress-panel">
 
-    <div class="upload-progress-bar">
-      <div
-        class="upload-progress-fill"
-        style="width:${AppState.upload.progress}%">
-      </div>
-    </div>
+ <div class="upload-progress-bar"></div>
 
-    <div class="upload-progress-text">
-      ${AppState.upload.progress}% · ${AppState.upload.currentFileName}
-    </div>
+<div class="upload-progress-text">
+  ⏳ Subiendo<br><br>
+
+  <strong>${AppState.upload.currentFileName}</strong><br><br>
+
+  ${AppState.upload.current + 1}
+  de
+  ${AppState.upload.total}
+  archivos
+</div>
 
   </div>
 ` : ""}
