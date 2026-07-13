@@ -603,3 +603,39 @@ background-position: center;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* Barra de progreso indeterminada */
+
+.upload-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #eadfe6;
+  overflow: hidden;
+}
+
+.upload-progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -35%;
+  width: 35%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #d94f91,
+    #8b5cf6
+  );
+  animation: uploadLoading 1.1s linear infinite;
+}
+
+@keyframes uploadLoading {
+  from {
+    left: -35%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
