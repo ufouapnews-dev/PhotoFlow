@@ -182,43 +182,7 @@ function removeSelectedFile(index) {
   AppState.upload.files.splice(index, 1);
   renderApp();
 }
-if (AppState.upload.status === "uploading") {
 
-  app.innerHTML = `
-    <main class="app-shell white-shell">
-
-      ${UI.header({
-        title: "Subiendo archivos",
-        back: false
-      })}
-
-      ${UI.stepper({
-        current: 2
-      })}
-
-      <section class="upload-page">
-
-        <div class="upload-placeholder">
-
-          <h2>Subiendo archivos...</h2>
-
-          <p>
-            ${AppState.upload.current}
-            de
-            ${AppState.upload.total}
-            archivos enviados
-          </p>
-
-        </div>
-
-      </section>
-
-      ${UI.bottomNav({
-        active: "upload"
-      })}
-
-    </main>
-  `;
   
 async function handleUploadAction() {
   if (AppState.upload.files.length === 0) {
