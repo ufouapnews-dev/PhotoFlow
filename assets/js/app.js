@@ -21,15 +21,13 @@ function renderHome() {
 
   <div class="home-brand-block">
 
-    <img
-      src="assets/images/logo-camera.png"
-      alt="Recuerdos"
-      class="home-brand-icon"
-    >
+  <img
+    src="assets/images/logo-recuerdos.png"
+    alt="Recuerdos"
+    class="home-logo"
+  >
 
-    <div class="home-brand">${AppState.app.name}</div>
-
-  </div>
+</div>
 
   <h1 class="home-event-title">
   XV Años<br>
