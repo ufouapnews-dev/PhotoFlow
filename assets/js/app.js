@@ -314,7 +314,6 @@ renderApp();
   AppState.upload.total = 0;
 
   goTo("sections");
-
 }
 
 renderApp();
