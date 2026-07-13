@@ -159,13 +159,21 @@ function selectSection(sectionId) {
 }
 function handleFilesSelected(event) {
   const files = Array.from(event.target.files);
+const uniqueNewFiles = files.filter(newFile =>
+  !AppState.upload.files.some(existingFile =>
+    existingFile.name === newFile.name &&
+    existingFile.size === newFile.size &&
+    existingFile.lastModified === newFile.lastModified
+  )
+);
 
 const mergedFiles = [
   ...AppState.upload.files,
-  ...files
+  ...uniqueNewFiles
 ];
 
 AppState.upload.files = mergedFiles.slice(0, 12);
+
   console.log(AppState.upload.files);
   renderApp();
   event.target.value = "";
