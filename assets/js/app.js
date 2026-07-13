@@ -1,5 +1,5 @@
 const app = document.getElementById("app");
-
+const UPLOAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbyK_Ki7Vmqmr-7Dzi0ui-8KbmKn5_yQz8zYq_A10qR4fNpHh8Gl-AvF5Cq8m7cMvMCc4Q/exec";
 function renderApp() {
   const page = AppState.navigation.currentPage;
   if (page === "home") renderHome();
@@ -189,5 +189,38 @@ function handleUploadAction() {
   }
 
   alert("Aquí iniciaremos la subida a Google Drive.");
+}
+async function uploadFiles() {
+
+  for (const file of AppState.upload.files) {
+
+    const base64 = await new Promise(resolve => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        resolve(reader.result.split(",")[1]);
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    const response = await fetch(UPLOAD_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        fileName: file.name,
+        mimeType: file.type,
+        base64: base64
+      })
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+  }
+
+  alert("Todos los archivos fueron enviados.");
 }
 renderApp();
