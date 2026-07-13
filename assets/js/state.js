@@ -17,8 +17,8 @@ const AppState = {
         slogan:
         "Comparte los momentos que harán inolvidable este día.",
 
-        heroImage:
-        "assets/images/hero.jpg",
+       heroImage:
+       "assets/images/sofi-home.png",
 sections: [
   {
     id: "preparativos",
