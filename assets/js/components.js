@@ -136,7 +136,7 @@ const UI = {
               class="bottom-nav-item
                 ${isActive ? "active" : ""}
                 ${isUpload ? "bottom-nav-upload" : ""}"
-              onclick="goTo('${item.id}')"
+                onclick="${isUpload ? "handleUploadAction()" : `goTo('${item.id}')`}"
               aria-label="${item.label || "Subir archivos"}"
             >
               <span class="bottom-nav-icon">
