@@ -182,13 +182,13 @@ function removeSelectedFile(index) {
   AppState.upload.files.splice(index, 1);
   renderApp();
 }
-function handleUploadAction() {
+async function handleUploadAction() {
   if (AppState.upload.files.length === 0) {
     document.getElementById("uploadFilePicker").click();
     return;
   }
 
-  alert("Aquí iniciaremos la subida a Google Drive.");
+  await uploadFiles();
 }
 async function uploadFiles() {
 
