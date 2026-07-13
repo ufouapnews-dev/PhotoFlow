@@ -300,9 +300,21 @@ renderApp();
 renderApp();
     console.log(result);
   }
-
   AppState.upload.status = "done";
-AppState.upload.files = [];
-renderApp();
+  AppState.upload.files = [];
+  renderApp();
 }
+  function resetUpload() {
+
+  AppState.upload.section = null;
+  AppState.upload.files = [];
+
+  AppState.upload.status = "idle";
+  AppState.upload.current = 0;
+  AppState.upload.total = 0;
+
+  goTo("sections");
+
+}
+
 renderApp();
