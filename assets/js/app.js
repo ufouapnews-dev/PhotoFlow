@@ -111,13 +111,15 @@ ${previews.slice(0, 7).map((file, index) =>
   })
 ).join("")}
 
- <button
-  class="upload-thumb upload-thumb-add"
-  onclick="document.getElementById('uploadFilePicker').click()"
-  aria-label="Agregar más archivos"
->
-  +
-</button>
+${previews.length < 12 ? `
+  <button
+    class="upload-thumb upload-thumb-add"
+    onclick="document.getElementById('uploadFilePicker').click()"
+    aria-label="Agregar más archivos"
+  >
+    +
+  </button>
+` : ""}
 
 </div>
 <p class="upload-counter">
@@ -132,11 +134,11 @@ ${previews.slice(0, 7).map((file, index) =>
             id: "uploadFilePicker",
             onChange: "handleFilesSelected(event)"
           })}
-          ${UI.button({
-            text: "Seleccionar archivos",
-            variant: "primary",
-            onClick: "document.getElementById('uploadFilePicker').click()"
-          })}
+      ${previews.length === 0 ? UI.button({
+  text: "Seleccionar archivos",
+  variant: "primary",
+  onClick: "document.getElementById('uploadFilePicker').click()"
+}) : ""}
         </div>
       </section>
 
