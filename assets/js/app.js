@@ -198,11 +198,28 @@ function renderUpload() {
             ${previews.length} de 12 archivos seleccionados
           </p>
 
-          <p>
-            ${selectedSection
-              ? `Sección seleccionada: ${selectedSection.name}`
-              : "Primero selecciona una sección"}
-          </p>
+          <div class="upload-section-name">
+  ${selectedSection
+    ? `Sección seleccionada: ${selectedSection.name}`
+    : "Primero selecciona una sección"}
+</div>
+
+${AppState.upload.status === "uploading" ? `
+  <div class="upload-progress-panel">
+
+    <div class="upload-progress-bar">
+      <div
+        class="upload-progress-fill"
+        style="width:${AppState.upload.progress}%">
+      </div>
+    </div>
+
+    <div class="upload-progress-text">
+      ${AppState.upload.progress}% · ${AppState.upload.currentFileName}
+    </div>
+
+  </div>
+` : ""}
 
           ${UI.filePicker({
             id: "uploadFilePicker",
