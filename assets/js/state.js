@@ -81,18 +81,24 @@ sections: [
         token: null
 
     },
-    upload: {
+        upload: {
 
-    section: null,
+        section: null,
 
-    files: [],
+        files: [],
 
-    status: "idle",
+        status: "idle",
 
-    current: 0,
+        current: 0,
 
-    total: 0
+        total: 0,
 
-}
+        currentFileName: "",
+
+        progress: 0,
+
+        error: null
+
+    }
 
 };
