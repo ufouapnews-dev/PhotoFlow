@@ -533,3 +533,10 @@ background-position: center;
   color: #fff;
   font-size: 11px;
 }
+.upload-counter {
+  text-align: center;
+  margin: 12px 0 8px;
+  font-size: 13px;
+  color: #7d7386;
+  font-weight: 500;
+}
