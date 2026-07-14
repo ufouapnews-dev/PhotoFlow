@@ -59,10 +59,13 @@ body {
 
 .home-content {
   flex: 1;
+  width: 72%;
+  max-width: 310px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 40px 28px 28px;
+  align-items: flex-start;
+  padding: 40px 0 28px 30px;
 }
 
 .home-title {
