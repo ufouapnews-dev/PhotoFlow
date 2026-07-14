@@ -257,29 +257,30 @@ async function loadGalleryItems(url) {
     const items = result.items || [];
 
 container.innerHTML = items
-  items.map((item, index) =>
+  .map((item, index) => `
     <article
-  class="live-card"
-  onclick="openViewer(${index})"
->
+      class="live-card"
+      onclick="openViewer(${index})"
+    >
 
-     <div class="live-media">
+      <div class="live-media">
 
-  <img
-    class="live-thumbnail"
-    src="https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800"
-    alt=""
-    loading="lazy"
-  >
+        <img
+          class="live-thumbnail"
+          src="https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800"
+          alt=""
+          loading="lazy"
+        >
 
-  ${item.mimeType.startsWith("video/")
-    ? `<div class="live-play-icon">▶</div>`
-    : ""
-  }
+        ${item.mimeType.startsWith("video/")
+          ? `<div class="live-play-icon">▶</div>`
+          : ""
+        }
 
-</div>
+      </div>
 
       <div class="live-card-info">
+
         <div class="live-section">
           ${getSectionName(item.sectionId)}
         </div>
@@ -287,6 +288,7 @@ container.innerHTML = items
         <div class="live-time">
           ${formatRelativeTime(item.uploadedAt)}
         </div>
+
       </div>
 
     </article>
