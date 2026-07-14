@@ -181,27 +181,15 @@ function showGalleryMode(mode) {
     <p>Elige una parte del evento para ver sus recuerdos.</p>
   </div>
 
-  <div class="gallery-sections-list">
-    ${AppState.event.sections.map(section => `
-      <button
-        class="gallery-section-row"
-        onclick="openGallerySection('${section.id}')"
-      >
-        <span class="gallery-section-icon">
-          ${section.icon}
-        </span>
-
-        <span class="gallery-section-name">
-          ${section.name}
-        </span>
-
-        <span class="gallery-section-arrow">
-          ›
-        </span>
-      </button>
-    `).join("")}
+  <div
+    id="gallerySectionsList"
+    class="gallery-sections-list"
+  >
+    Cargando secciones...
   </div>
 `;
+
+loadGallerySections();
 }
 
 function openGallerySection(sectionId) {
