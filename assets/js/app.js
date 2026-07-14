@@ -240,7 +240,11 @@ function formatRelativeTime(dateString) {
 
 }
 
-function openViewer(fileId) {
+function openViewer(index) {
+  currentViewerIndex = index;
+
+  const item = liveItems[currentViewerIndex];
+
   const viewer = document.createElement("div");
 
   viewer.className = "media-viewer";
@@ -254,16 +258,66 @@ function openViewer(fileId) {
       ×
     </button>
 
+    <button
+      class="media-viewer-arrow media-viewer-prev"
+      onclick="showPreviousItem()"
+      aria-label="Anterior"
+    >
+      ‹
+    </button>
+
     <img
       class="media-viewer-image"
-      src="https://drive.google.com/thumbnail?id=${fileId}&sz=w1600"
+      src="https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1600"
       alt=""
     >
+
+    <button
+      class="media-viewer-arrow media-viewer-next"
+      onclick="showNextItem()"
+      aria-label="Siguiente"
+    >
+      ›
+    </button>
   `;
 
   document.body.appendChild(viewer);
 }
 
+function showPreviousItem() {
+  currentViewerIndex =
+    (currentViewerIndex - 1 + liveItems.length) % liveItems.length;
+
+  updateViewerMedia();
+}
+
+function showNextItem() {
+  currentViewerIndex =
+    (currentViewerIndex + 1) % liveItems.length;
+
+  updateViewerMedia();
+}
+
+function updateViewerMedia() {
+  const item = liveItems[currentViewerIndex];
+
+  const image = document.querySelector(".media-viewer-image");
+
+  if (image) {
+    image.src =
+      `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1600`;
+  }
+}
+
+function closeViewer() {
+  const viewer = document.querySelector(".media-viewer");
+
+  if (viewer) {
+    viewer.remove();
+  }
+
+  currentViewerIndex = -1;
+}
 function closeViewer() {
   const viewer = document.querySelector(".media-viewer");
 
