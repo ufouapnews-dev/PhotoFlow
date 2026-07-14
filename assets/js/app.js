@@ -1,5 +1,24 @@
 const app = document.getElementById("app");
 const UPLOAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbyK_Ki7Vmqmr-7Dzi0ui-8KbmKn5_yQz8zYq_A10qR4fNpHh8Gl-AvF5Cq8m7cMvMCc4Q/exec";
+
+function getDeviceToken() {
+
+  let token = localStorage.getItem("recuerdos-device-token");
+
+  if (!token) {
+
+    token = crypto.randomUUID();
+
+    localStorage.setItem(
+      "recuerdos-device-token",
+      token
+    );
+
+  }
+
+  AppState.device.token = token;
+
+}
 function renderApp() {
   const page = AppState.navigation.currentPage;
   if (page === "home") renderHome();
@@ -378,4 +397,5 @@ async function uploadFiles() {
   goTo("sections");
 }
 
+getDeviceToken();
 renderApp();
