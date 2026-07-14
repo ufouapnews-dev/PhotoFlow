@@ -773,3 +773,22 @@ background-position: center;
 .media-viewer-next {
   right: 18px;
 }
+.live-media {
+  position: relative;
+}
+
+.live-play-icon {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.68);
+  color: #ffffff;
+  font-size: 20px;
+  pointer-events: none;
+}
