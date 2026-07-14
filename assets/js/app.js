@@ -170,12 +170,21 @@ async function loadLiveItems() {
   onclick="openViewer(${index})"
 >
 
-      <img
-        class="live-thumbnail"
-        src="https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800"
-        alt=""
-        loading="lazy"
-      >
+     <div class="live-media">
+
+  <img
+    class="live-thumbnail"
+    src="https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800"
+    alt=""
+    loading="lazy"
+  >
+
+  ${item.mimeType.startsWith("video/")
+    ? `<div class="live-play-icon">▶</div>`
+    : ""
+  }
+
+</div>
 
       <div class="live-card-info">
         <div class="live-section">
