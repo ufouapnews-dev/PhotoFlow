@@ -203,6 +203,29 @@ function showGalleryMode(mode) {
   </div>
 `;
 }
+
+function openGallerySection(sectionId) {
+
+  const galleryBody = document.getElementById("galleryBody");
+
+  galleryBody.innerHTML = `
+    <div class="live-heading">
+      <h2>${getSectionName(sectionId)}</h2>
+
+      <p>Cargando recuerdos...</p>
+    </div>
+
+    <div id="liveContent" class="live-content">
+      Cargando...
+    </div>
+  `;
+
+  loadGalleryItems(
+    `${UPLOAD_ENDPOINT}?action=section&sectionId=${sectionId}`
+  );
+
+}
+
 async function loadGalleryItems(url) {
 
   const container = document.getElementById("liveContent");
@@ -231,8 +254,10 @@ async function loadGalleryItems(url) {
 
     }
     liveItems = result.items;
-    container.innerHTML = result.items
-  .map((item, index) => `
+    const items = result.items || [];
+
+container.innerHTML = items
+  items.map((item, index) =>
     <article
   class="live-card"
   onclick="openViewer(${index})"
