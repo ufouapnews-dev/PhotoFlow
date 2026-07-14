@@ -172,11 +172,32 @@ function showGalleryMode(mode) {
   buttons[1].classList.add("active");
 
   galleryBody.innerHTML = `
-    <div class="gallery-sections-placeholder">
-      <h2>Explorar por sección</h2>
-      <p>Próximamente mostraremos aquí las secciones del evento.</p>
-    </div>
-  `;
+  <div class="gallery-sections-heading">
+    <h2>Explorar por sección</h2>
+    <p>Elige una parte del evento para ver sus recuerdos.</p>
+  </div>
+
+  <div class="gallery-sections-list">
+    ${AppState.event.sections.map(section => `
+      <button
+        class="gallery-section-row"
+        onclick="openGallerySection('${section.id}')"
+      >
+        <span class="gallery-section-icon">
+          ${section.icon}
+        </span>
+
+        <span class="gallery-section-name">
+          ${section.name}
+        </span>
+
+        <span class="gallery-section-arrow">
+          ›
+        </span>
+      </button>
+    `).join("")}
+  </div>
+`;
 }
 async function loadLiveItems() {
 
