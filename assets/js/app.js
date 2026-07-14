@@ -35,18 +35,19 @@ function renderHome() {
 
 </div>
 
- <h1 class="home-event-title">
+<h1 class="home-event-title">
 
   <span class="home-event-type">
     XV Años
   </span>
+
+  <div class="home-title-line"></div>
 
   <span class="home-event-name">
     Sofía Gutiérrez
   </span>
 
 </h1>
-            <div class="home-title-line"></div>
 
             <p>
               Comparte tus momentos<br>
