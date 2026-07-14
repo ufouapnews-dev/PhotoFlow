@@ -104,61 +104,80 @@ function renderHome() {
 function renderLive() {
   app.innerHTML = `
     <main class="app-shell white-shell">
-
       ${UI.header({
         title: "Galería",
         back: "home"
       })}
-
       <section class="live-page">
-
         <div class="gallery-switch">
-
   <button
     class="gallery-switch-button active"
     onclick="showGalleryMode('live')"
   >
     ✨ En vivo
   </button>
-
   <button
     class="gallery-switch-button"
     onclick="showGalleryMode('sections')"
   >
     📂 Secciones
   </button>
-
 </div>
-
 <div id="galleryBody">
-
   <div class="live-heading">
     <h2>En vivo</h2>
     <p>Últimos recuerdos compartidos</p>
   </div>
-
   <div id="liveContent" class="live-content">
     Cargando recuerdos...
   </div>
-
 </div>
-
-        <div id="liveContent" class="live-content">
-          Cargando recuerdos...
-        </div>
-
       </section>
-
       ${UI.bottomNav({
         active: "home"
       })}
-
     </main>
   `;
-
   loadLiveItems();
 }
+function showGalleryMode(mode) {
+  const buttons = document.querySelectorAll(
+    ".gallery-switch-button"
+  );
 
+  buttons.forEach(button => {
+    button.classList.remove("active");
+  });
+
+  const galleryBody = document.getElementById("galleryBody");
+
+  if (mode === "live") {
+    buttons[0].classList.add("active");
+
+    galleryBody.innerHTML = `
+      <div class="live-heading">
+        <h2>En vivo</h2>
+        <p>Últimos recuerdos compartidos</p>
+      </div>
+
+      <div id="liveContent" class="live-content">
+        Cargando recuerdos...
+      </div>
+    `;
+
+    loadLiveItems();
+    return;
+  }
+
+  buttons[1].classList.add("active");
+
+  galleryBody.innerHTML = `
+    <div class="gallery-sections-placeholder">
+      <h2>Explorar por sección</h2>
+      <p>Próximamente mostraremos aquí las secciones del evento.</p>
+    </div>
+  `;
+}
 async function loadLiveItems() {
 
   const container = document.getElementById("liveContent");
