@@ -1,6 +1,7 @@
 const app = document.getElementById("app");
 const UPLOAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbyK_Ki7Vmqmr-7Dzi0ui-8KbmKn5_yQz8zYq_A10qR4fNpHh8Gl-AvF5Cq8m7cMvMCc4Q/exec";
-
+let liveItems = [];
+let currentViewerIndex = -1;
 function getDeviceToken() {
 
   let token = localStorage.getItem("recuerdos-device-token");
@@ -161,12 +162,12 @@ async function loadLiveItems() {
       return;
 
     }
-
+    liveItems = result.items;
     container.innerHTML = result.items
-  .map(item => `
+  .map((item, index) => `
     <article
   class="live-card"
-  onclick="openViewer('${item.fileId}')"
+  onclick="openViewer(${index})"
 >
 
       <img
