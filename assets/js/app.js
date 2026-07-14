@@ -192,6 +192,74 @@ function showGalleryMode(mode) {
 loadGallerySections();
 }
 
+async function loadGallerySections() {
+  const container = document.getElementById(
+    "gallerySectionsList"
+  );
+
+  try {
+    const response = await fetch(
+      `${UPLOAD_ENDPOINT}?action=sections`
+    );
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error(
+        "No fue posible cargar las secciones."
+      );
+    }
+
+    container.innerHTML = result.sections
+      .map(section => `
+        <button
+          class="gallery-section-card"
+          onclick="openGallerySection('${section.id}')"
+        >
+          <div class="gallery-section-cover">
+            ${
+              section.coverFileId
+                ? `
+                  <img
+                    src="https://drive.google.com/thumbnail?id=${section.coverFileId}&sz=w800"
+                    alt=""
+                    loading="lazy"
+                  >
+                `
+                : `
+                  <div class="gallery-section-placeholder">
+                    ${section.icon}
+                  </div>
+                `
+            }
+          </div>
+
+          <div class="gallery-section-info">
+            <div class="gallery-section-title">
+              ${section.icon} ${section.name}
+            </div>
+
+            <div class="gallery-section-count">
+              ${section.count}
+              ${section.count === 1
+                ? "recuerdo"
+                : "recuerdos"}
+            </div>
+          </div>
+        </button>
+      `)
+      .join("");
+
+  } catch (error) {
+    container.innerHTML = `
+      <div class="live-error">
+        Error al cargar las secciones.
+      </div>
+    `;
+
+    console.error(error);
+  }
+}
 function openGallerySection(sectionId) {
 
   const galleryBody = document.getElementById("galleryBody");
