@@ -901,3 +901,86 @@ background-position: center;
   font-size: 12px;
   color: #7d7386;
 }
+/* Modo Recuerdos - Galería oscura */
+
+.gallery-shell {
+  background: #111014;
+  color: #ffffff;
+}
+
+.gallery-shell .page-header {
+  background: #111014;
+}
+
+.gallery-shell .page-header h1 {
+  color: #ffffff;
+}
+
+.gallery-shell .icon-back {
+  background: #1d1a20;
+  color: #ffffff;
+}
+
+.gallery-shell .live-page {
+  background: #111014;
+}
+
+.gallery-shell .live-heading h2,
+.gallery-shell .gallery-sections-heading h2 {
+  color: #ffffff;
+}
+
+.gallery-shell .live-heading p,
+.gallery-shell .gallery-sections-heading p {
+  color: #aaa1ad;
+}
+
+.gallery-shell .gallery-switch {
+  background: #1d1a20;
+}
+
+.gallery-shell .gallery-switch-button {
+  color: #c8c1ca;
+}
+
+.gallery-shell .gallery-switch-button.active {
+  color: #ffffff;
+}
+
+.gallery-shell .live-card,
+.gallery-shell .gallery-section-card {
+  background: #19171c;
+  border: 1px solid #302b33;
+  box-shadow: none;
+}
+
+.gallery-shell .live-section,
+.gallery-shell .gallery-section-title {
+  color: #ffffff;
+}
+
+.gallery-shell .live-time,
+.gallery-shell .gallery-section-count {
+  color: #aaa1ad;
+}
+
+.gallery-shell .gallery-section-placeholder {
+  background: linear-gradient(
+    135deg,
+    #241c24,
+    #211b2c
+  );
+}
+
+.gallery-shell .bottom-nav {
+  background: #0e0d10;
+  border-top-color: #29252c;
+}
+
+.gallery-shell .bottom-nav-item {
+  color: #aaa1ad;
+}
+
+.gallery-shell .bottom-nav-item.active {
+  color: var(--color-primary);
+}
