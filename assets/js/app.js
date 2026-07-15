@@ -22,10 +22,12 @@ function getDeviceToken() {
 }
 function renderApp() {
   const page = AppState.navigation.currentPage;
+
   if (page === "home") renderHome();
-if (page === "sections") renderSections();
-if (page === "upload") renderUpload();
-if (page === "live") renderLive();
+  if (page === "sections") renderSections();
+  if (page === "upload") renderUpload();
+  if (page === "live") renderLive();
+  if (page === "mine") renderMine();
 }
 
 function renderHome() {
