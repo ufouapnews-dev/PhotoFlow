@@ -144,7 +144,14 @@ upload: `
               class="bottom-nav-item
                 ${isActive ? "active" : ""}
                 ${isUpload ? "bottom-nav-upload" : ""}"
-                onclick="${isUpload ? "handleUploadAction()" : `goTo('${item.id}')`}"
+                onclick="${isUpload
+  ? (
+      AppState.navigation.currentPage === "upload"
+        ? "handleUploadAction()"
+        : "goTo('sections')"
+    )
+  : `goTo('${item.id}')`
+}"
               aria-label="${item.label || "Subir archivos"}"
             >
               <span class="bottom-nav-icon">
