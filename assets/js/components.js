@@ -32,7 +32,12 @@ const UI = {
     `;
   },
 
- sectionCard({ section }) {
+sectionCard({ section }) {
+  const sectionName =
+    section.id === "general"
+      ? "General"
+      : section.name;
+
   return `
     <button
       class="section-tile"
@@ -40,13 +45,20 @@ const UI = {
       style="background-image:
         linear-gradient(
           180deg,
-          rgba(0,0,0,0.04),
-          rgba(0,0,0,0.72)
+          rgba(0,0,0,0.08),
+          rgba(0,0,0,0.78)
         ),
         url('${section.image}')"
     >
-      <span class="tile-icon">${section.icon}</span>
-      <span class="tile-name">${section.name}</span>
+      <img
+        class="tile-icon"
+        src="assets/images/sections/${section.id}.svg"
+        alt=""
+      >
+
+      <span class="tile-name">
+        ${sectionName}
+      </span>
     </button>
   `;
 },
