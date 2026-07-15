@@ -83,7 +83,12 @@ function renderHome() {
               text: "Subir fotos o videos",
               variant: "primary",
               onClick: "goTo('sections')"
-            })}            
+            })} 
+            ${UI.button({
+  text: "Ver Galería",
+  variant: "secondary",
+  onClick: "goTo('live')"
+})}
           </div>
         </div>
       </section>
