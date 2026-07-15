@@ -139,7 +139,6 @@ function renderLive() {
 }
 
 function renderMine() {
-
   app.innerHTML = `
     <main class="app-shell gallery-shell">
 
@@ -152,10 +151,10 @@ function renderMine() {
 
         <div class="live-heading">
           <h2>Mis recuerdos</h2>
-          <p>Solo tú puedes ver y administrar estos archivos.</p>
+          <p>Todas las fotos y videos que has compartido.</p>
         </div>
 
-        <div id="liveContent" class="live-content">
+        <div id="mineContent">
           Cargando recuerdos...
         </div>
 
@@ -168,12 +167,89 @@ function renderMine() {
     </main>
   `;
 
-  loadGalleryItems(
-    `${UPLOAD_ENDPOINT}?action=mine&deviceToken=${encodeURIComponent(AppState.device.token)}`
-  );
-
+  loadMineGrouped();
 }
+async function loadMineGrouped() {
+  const container = document.getElementById("mineContent");
 
+  try {
+    const response = await fetch(
+      `${UPLOAD_ENDPOINT}?action=mine&deviceToken=${encodeURIComponent(AppState.device.token)}`
+    );
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error("No fue posible cargar Mis Subidas.");
+    }
+
+    const items = result.items || [];
+    liveItems = items;
+
+    if (!items.length) {
+      container.innerHTML = `
+        <div class="live-empty">
+          Aún no has compartido recuerdos.
+        </div>
+      `;
+      return;
+    }
+
+    const sectionsWithItems = AppState.event.sections
+      .map(section => ({
+        ...section,
+        items: items.filter(item => item.sectionId === section.id)
+      }))
+      .filter(section => section.items.length > 0);
+
+    container.innerHTML = sectionsWithItems
+      .map(section => `
+        <section class="mine-section-group">
+          <h3 class="mine-section-title">
+            ${section.icon}
+            ${section.id === "general" ? "General" : section.name}
+          </h3>
+
+          <div class="mine-section-grid">
+            ${section.items.map(item => {
+              const itemIndex = items.findIndex(
+                currentItem => currentItem.fileId === item.fileId
+              );
+
+              return `
+                <button
+                  class="mine-thumbnail"
+                  onclick="openViewer(${itemIndex})"
+                  aria-label="Abrir recuerdo"
+                >
+                  <img
+                    src="https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800"
+                    alt=""
+                    loading="lazy"
+                  >
+
+                  ${item.mimeType.startsWith("video/")
+                    ? `<span class="live-play-icon">▶</span>`
+                    : ""
+                  }
+                </button>
+              `;
+            }).join("")}
+          </div>
+        </section>
+      `)
+      .join("");
+
+  } catch (error) {
+    container.innerHTML = `
+      <div class="live-error">
+        Error al cargar Mis Subidas.
+      </div>
+    `;
+
+    console.error(error);
+  }
+}
 function showGalleryMode(mode) {
   const buttons = document.querySelectorAll(
     ".gallery-switch-button"
