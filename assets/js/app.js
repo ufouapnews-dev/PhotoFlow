@@ -714,7 +714,11 @@ function renderUpload() {
       ${UI.stepper({
         current: 1
       })}
-
+       <div class="upload-section-name">
+  ${selectedSection
+    ? `Sección seleccionada: ${selectedSection.name}`
+    : "Primero selecciona una sección"}
+</div>
       <section class="upload-page">
         <div class="upload-placeholder">
           <div class="upload-grid">
@@ -741,11 +745,7 @@ function renderUpload() {
             ${previews.length} de 12 archivos seleccionados
           </p>
 
-          <div class="upload-section-name">
-  ${selectedSection
-    ? `Sección seleccionada: ${selectedSection.name}`
-    : "Primero selecciona una sección"}
-</div>
+         
 
 ${AppState.upload.status === "uploading" ? `
   <div class="upload-progress-panel">
