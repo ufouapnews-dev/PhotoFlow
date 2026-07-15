@@ -597,20 +597,29 @@ function closeViewer() {
 function renderSections() {
   app.innerHTML = `
     <main class="app-shell white-shell">
+
       ${UI.header({
-  title: "Secciones",
-  back: "home"
-})}
+        title: "¿Dónde quieres compartir?",
+        back: "home"
+      })}
+
+      <section class="sections-intro">
+        <p>
+          Selecciona la sección donde deseas subir tus fotos o videos.
+          Usa General si no corresponde a ninguna.
+        </p>
+      </section>
 
       <section class="sections-grid">
         ${AppState.event.sections.map(section =>
-        UI.sectionCard({ section })
+          UI.sectionCard({ section })
         ).join("")}
       </section>
 
       ${UI.bottomNav({
-  active: "sections"
-})}
+        active: "upload"
+      })}
+
     </main>
   `;
 }
