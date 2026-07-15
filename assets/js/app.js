@@ -444,16 +444,12 @@ container.innerHTML = items
       </div>
 
             ${showInfo ? `
-        <div class="live-card-info">
-          <div class="live-section">
-            ${getSectionName(item.sectionId)}
-          </div>
-
-          <div class="live-time">
-            ${formatRelativeTime(item.uploadedAt)}
-          </div>
-        </div>
-      ` : ""}
+  <div class="live-card-info">
+    <div class="live-time">
+      ${formatRelativeTime(item.uploadedAt)}
+    </div>
+  </div>
+` : ""}
     </article>
   `)
   .join("");
