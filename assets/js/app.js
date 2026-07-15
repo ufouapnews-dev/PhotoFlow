@@ -716,7 +716,9 @@ function renderUpload() {
       })}
        <div class="upload-section-name">
   ${selectedSection
-    ? `Sección seleccionada: ${selectedSection.name}`
+    ? `📁 ${selectedSection.id === "general"
+        ? "General"
+        : selectedSection.name}`
     : "Primero selecciona una sección"}
 </div>
       <section class="upload-page">
