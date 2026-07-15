@@ -108,7 +108,7 @@ upload: `
     </svg>
   `}
 `,
-      uploads: `
+      mine: `
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M7 7h10"/>
           <path d="M7 12h10"/>
@@ -129,7 +129,7 @@ upload: `
       { id: "home", label: "Inicio" },
       { id: "sections", label: "Secciones" },
       { id: "upload", label: "" },
-      { id: "uploads", label: "Mis Subidas" },
+      { id: "mine", label: "Mis Subidas" },
       { id: "info", label: "Info" }
     ];
 
