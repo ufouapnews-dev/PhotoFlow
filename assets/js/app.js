@@ -106,11 +106,11 @@ function renderLive() {
       <section class="live-page">
         <div class="gallery-switch">
   <button
-    class="gallery-switch-button active"
-    onclick="showGalleryMode('live')"
-  >
-    ✨ En vivo
-  </button>
+  class="gallery-switch-button active"
+  onclick="showGalleryMode('live')"
+>
+  🕒 Recientes
+</button>
   <button
     class="gallery-switch-button"
     onclick="showGalleryMode('sections')"
