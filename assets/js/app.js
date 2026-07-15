@@ -305,10 +305,9 @@ function openGallerySection(sectionId) {
 
   galleryBody.innerHTML = `
     <div class="live-heading">
-      <h2>${getSectionName(sectionId)}</h2>
-
-      <p>Cargando recuerdos...</p>
-    </div>
+  <h2>${getSectionName(sectionId)}</h2>
+  <p>Recuerdos de esta sección</p>
+</div>
 
     <div id="liveContent" class="live-content">
       Cargando...
