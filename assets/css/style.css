@@ -1053,3 +1053,14 @@ background-position: center;
   height: 36px;
   font-size: 16px;
 }
+.gallery-section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.gallery-section-icon{
+  width:22px;
+  height:22px;
+  object-fit:contain;
+}
