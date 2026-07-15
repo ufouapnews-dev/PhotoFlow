@@ -598,11 +598,13 @@ background-position: center;
   color: #7d7386;
   font-weight: 500;
 }
-.upload-section-name {
-  margin: 8px 0 14px;
-  text-align: center;
-  font-size: 13px;
-  color: #7d7386;
+.upload-section-name{
+    margin: 18px 0 14px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d2232;
+    line-height: 1.35;
 }
 
 .upload-progress-panel {
