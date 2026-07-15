@@ -344,8 +344,20 @@ async function loadGallerySections() {
 
           <div class="gallery-section-info">
             <div class="gallery-section-title">
-              ${section.icon} ${section.name}
-            </div>
+
+  <img
+    class="gallery-section-icon"
+    src="assets/images/sections/${section.id}.svg"
+    alt=""
+  >
+
+  <span>
+    ${section.id === "general"
+      ? "General"
+      : section.name}
+  </span>
+
+</div>
 
             <div class="gallery-section-count">
               ${section.count}
